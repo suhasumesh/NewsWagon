@@ -31,7 +31,7 @@ export class News extends Component {
     }
     async updateNews() {
         // console.log("CDM");
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ffd952d1c26e4162ad3f9907268a9b33&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
         let data = await fetch(url);
         let parsedData = await data.json();     // JSON is a format for storing and transporting data. JSON is often used when data is sent from a server to a web page.         When receiving data from a web server, the data is always a string. Parse the data with JSON.parse() , and the data becomes a JavaScript object.
@@ -58,7 +58,7 @@ export class News extends Component {
     }
     handlePreviousClick = async () => {
         console.log("Previous")
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ffd952d1c26e4162ad3f9907268a9b33&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -76,7 +76,7 @@ export class News extends Component {
     handleNextClick = async () => {
         console.log("Next")
         if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
-            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ffd952d1c26e4162ad3f9907268a9b33&page=${this.state.page+1} &pageSize=${this.props.pageSize}`;
+            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page+1} &pageSize=${this.props.pageSize}`;
 
             let data = await fetch(url);
             let parsedData = await data.json();
